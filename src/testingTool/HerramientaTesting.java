@@ -1,8 +1,6 @@
-package herramientaTesting;
+package testingTool;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import javax.swing.JScrollPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
