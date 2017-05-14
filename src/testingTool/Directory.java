@@ -23,7 +23,13 @@ public class Directory {
 
     private String error;
 
-    public Directory(String directory) {
+    
+    
+    public Directory() {
+		
+	}
+
+	public Directory(String directory) {
         searchFiles(directory);
     }
 
@@ -94,4 +100,10 @@ public class Directory {
     public void readClass() throws ClassNotFoundException {
         selectedClass.setMethods(Stream.of(Class.forName("testingTool." + selectedClass.getName()).getDeclaredMethods()).map(method -> new Code(method.getName())).collect(Collectors.toList()));
     }
+    
+    public void setSelectedFile(File file){
+    	selectedFile=file;
+    }
+    
+   
 }
