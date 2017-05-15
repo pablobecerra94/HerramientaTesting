@@ -1,24 +1,26 @@
 package testingTool;
 
-import java.util.List;
-
 public class Clase {
-    private List<Code> methods;
-    private String name;
+	
+	private String nombre;
 
-    public Clase(String name) {
-        this.name = name;
-    }
+	public Clase(String nombre) {
+		this.nombre=nombre;
+	}
 
-    public List<Code> getMethods() {
-        return methods;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public void setMethods(List<Code> methods) {
-        this.methods = methods;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public String getName() {
-        return name;
-    }
+	@Override
+	public String toString() {
+		return nombre;
+	}
+	
+	
+
 }

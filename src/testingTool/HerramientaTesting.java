@@ -110,7 +110,7 @@ public class HerramientaTesting extends JFrame {
 class myPanel extends JPanel {
 	JList<File> fileList;
 	Directory directory;
-	JList<Clase> classList;
+	JList<ClaseDamian> classList;
 	JList<Code> methodList;
 
 	public myPanel(JList<File> fileList, Directory directory) {
@@ -393,11 +393,11 @@ class myPanel extends JPanel {
 
 	}
 
-	protected void obtenerClases(List<Clase> list) {
+	protected void obtenerClases(List<ClaseDamian> list) {
 
-		DefaultListModel<Clase> modelo = new DefaultListModel<>();
+		DefaultListModel<ClaseDamian> modelo = new DefaultListModel<>();
 
-		for (Clase clase : list) {
+		for (ClaseDamian clase : list) {
 			modelo.addElement(clase);
 		}
 		classList.setModel(modelo);

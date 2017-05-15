@@ -15,11 +15,11 @@ public class Directory {
 
     private File selectedFile;
 
-    private Clase selectedClass;
+    private ClaseDamian selectedClass;
 
     private Code selectedMethod;
 
-    private List<Clase> classes;
+    private List<ClaseDamian> classes;
 
     private String error;
 
@@ -77,13 +77,13 @@ public class Directory {
 
     public void readSelectedFile() {
         try (Stream<String> lines = Files.lines(Paths.get(selectedFile.toURI()))) {
-            classes = lines.filter(line -> line.startsWith("public class")).map(line -> line.split(" ")[2]).map(Clase::new).collect(Collectors.toList());
+            classes = lines.filter(line -> line.startsWith("public class")).map(line -> line.split(" ")[2]).map(ClaseDamian::new).collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public List<Clase> listClasses(File file) {
+    public List<ClaseDamian> listClasses(File file) {
         selectFile(files.indexOf(file));
         readSelectedFile();
         return classes;
@@ -93,7 +93,7 @@ public class Directory {
         return selectedClass.getMethods();
     }
 
-    public void selectClass(Clase clase) {
+    public void selectClass(ClaseDamian clase) {
         selectedClass = classes.get(classes.indexOf(clase));
     }
 
