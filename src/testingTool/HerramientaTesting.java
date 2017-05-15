@@ -39,6 +39,7 @@ public class HerramientaTesting extends JFrame {
 	JTextArea classCodeTxtArea;
 	JList<File> fileList = new JList<>();
 	Directory directory = new Directory();
+	private static final long serialVersionUID = 1L;
 
 	public HerramientaTesting() {
 
@@ -98,7 +99,7 @@ public class HerramientaTesting extends JFrame {
 
 	}
 
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = 1L;
 
 	private void openShowDialog(ActionEvent arg0) {
 		chooser = new JFileChooser();
@@ -172,8 +173,7 @@ class myPanel extends JPanel {
 
 		JLabel lblMethodCode = new JLabel("Codigo Metodo");
 		lblMethodCode.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblMethodCode
-				.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)),
+		lblMethodCode.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)),
 						55 + (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * (0.15)) + 10 + 50
 								+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * (0.25)) + 10,
 						100, 50);

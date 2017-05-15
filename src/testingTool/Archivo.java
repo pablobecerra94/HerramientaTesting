@@ -25,20 +25,38 @@ public class Archivo {
 	}
 
 	public void buscarClases() {
+		int indiceClase=-1;
 		for(int i=0;i<lineas.size();i++){
+			
 			if(lineas.get(i).startsWith("class")||lineas.get(i).contains(" class ")){
 					String [] lineaActual=lineas.get(i).split(" ");
 					for(int j=0;j<lineaActual.length-1;j++){
 						if(lineaActual[j].equals("class")){
 							Clase clase = new Clase(lineaActual[j+1]);
 							clases.add(clase);
-						
+							indiceClase++;
 						}
 					}
 					
 			}
+			else{
+				clases.get(indiceClase).getLineasCodigo().add(lineas.get(i));
+			}
+				
 		}
 		
+		for(Clase clase : clases)
+			clase.setCantidadLineas(clase.getLineasCodigo().size());
+		
+		
+	/*	System.out.println("IMPRESION DE CODIGO DE LA PRIMERA CLASE ENCONTRADA:");
+		for(int i=0;i<clases.get(0).getLineasCodigo().size();i++)
+			System.out.println(clases.get(0).getLineasCodigo().get(i));
+		
+		System.out.println("\n\n\n\nIMPRESION DE CODIGO DE LA SEGUNDA CLASE ENCONTRADA:");
+		for(int i=0;i<clases.get(1).getLineasCodigo().size();i++)
+			System.out.println(clases.get(1).getLineasCodigo().get(i));*/
+		clases.get(0).encontrarMetodos();
 	}
 
 	public void leerArchivo() throws FileNotFoundException {

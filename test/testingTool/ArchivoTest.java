@@ -9,16 +9,16 @@ import org.junit.Test;
 
 public class ArchivoTest {
 
-	@Test
+	/*@Test
 	public void muestraLasLineasDeUnArchivo() throws FileNotFoundException {
 		Archivo archivo= new Archivo(new File("src//testingTool//Archivo.java"));
 		archivo.verLineas();
 
-	}
+	}*/
 	
 	@Test
 	public void muestraLosNombresDeLasClases() throws FileNotFoundException {
-		Archivo archivo= new Archivo(new File("src//testingTool//Archivo.java"));
+		Archivo archivo= new Archivo(new File("src//testingTool//HerramientaTesting.java"));
 		archivo.verClases();
 
 	}
