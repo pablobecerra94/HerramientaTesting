@@ -2,7 +2,7 @@ package testingTool;
 
 import org.junit.Assert;
 import org.junit.Test;
-import sun.plugin.com.JavaClass;
+
 
 public class AnalysisTest {
     Analysis analysis;
