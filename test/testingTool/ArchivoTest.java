@@ -18,7 +18,7 @@ public class ArchivoTest {
 	
 	@Test
 	public void muestraLosNombresDeLasClases() throws FileNotFoundException {
-		Archivo archivo= new Archivo(new File("src//testingTool//HerramientaTesting.java"));
+		Archivo archivo= new Archivo(new File("src//testingTool//Triangulo.java"));
 		archivo.verClases();
 
 	}

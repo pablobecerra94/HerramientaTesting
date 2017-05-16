@@ -50,7 +50,7 @@ public class Clase {
 	
 		for(String linea: lineasCodigoClase){
 			
-			if(!linea.contains(";")&&(linea.contains("public")||linea.contains("protected")||linea.contains("private"))){
+			if((!linea.contains(";"))&&tieneModificadores(linea)){
 				
 				auxiliar = linea.split(" ");
 				if(linea.contains("static")) {
@@ -60,7 +60,8 @@ public class Clase {
 						nombreMetodo=	auxiliar[3];
 				}
 				else{
-					if(!linea.contains(this.getNombre())){
+					//if(!linea.contains(this.getNombre())){
+					if(!linea.contains(" "+this.getNombre()+"(")){
 						if(auxiliar[2].contains("("))
 							nombreMetodo=	auxiliar[2].substring(0, auxiliar[2].indexOf("("));
 						else
@@ -80,11 +81,20 @@ public class Clase {
 		}
 	
 			for(Metodo met : metodos)
+			{
 			System.out.println(met.getNombre());
+			met.setCantidadLineas(met.getLineasCodigo().size());
+			}
 			
 			this.agregarLineasCodigoMetodo();
 			
 	}
+
+	private boolean tieneModificadores(String linea) {
+		return linea.contains("public")||linea.contains("protected")||linea.contains("private");
+	}
+	
+	
 	
 	public void agregarLineasCodigoMetodo(){
 		int a=0;
@@ -93,7 +103,7 @@ public class Clase {
 		for(Metodo metodoActual : metodos){
 			a=0;
 			contadorLlaves=0;
-			while(!lineasCodigoClase.get(a).contains(metodoActual.getNombre())|| lineasCodigoClase.get(a).contains(";"))
+			while(!lineasCodigoClase.get(a).contains(metodoActual.getNombre())|| lineasCodigoClase.get(a).contains(";")|| !tieneModificadores(lineasCodigoClase.get(a)))
 				a++;
 			
 			if(lineasCodigoClase.get(a).contains("{"))
@@ -113,9 +123,19 @@ public class Clase {
 		}
 		
 		System.out.println("\n\n\nCODIGO DEL PRIMER METODO:");
-		for(int i=0;i<metodos.get(0).getLineasCodigo().size();i++)
-			System.out.println(metodos.get(0).getLineasCodigo().get(i));
+		for(int i=0;i<metodos.get(10).getLineasCodigo().size();i++)
+			System.out.println(metodos.get(10).getLineasCodigo().get(i));
 		
+		metodos.get(0).calcularLineasComentadas();
+		metodos.get(0).calcularLineas();
+		System.out.println(metodos.get(0).getCantidadLineas());
+		System.out.println(metodos.get(0).getCantidadLineasComentadas());
+		System.out.println(metodos.get(0).getPorcentajeComentado());
+		
+		int k=7;
+		System.out.println(metodos.get(k).getNombre());
+		metodos.get(k).calcularComplejidadCiclomatica();
+		System.out.println(metodos.get(k).getComplejidadCiclomatica());
 	}
 
 }

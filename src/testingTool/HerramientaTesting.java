@@ -86,7 +86,7 @@ public class HerramientaTesting extends JFrame {
 	protected void cargarArchivos() {
 		directory.searchFiles(file.getAbsolutePath());
 		DefaultListModel<File> modelo = new DefaultListModel<>();
-		for (File file : directory.getFiles()) {
+		for(File file : directory.getFiles()) {
 			modelo.addElement(file);
 		}
 		fileList.setModel(modelo);
