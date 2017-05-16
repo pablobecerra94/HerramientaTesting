@@ -126,13 +126,16 @@ public class Clase {
 		for(int i=0;i<metodos.get(10).getLineasCodigo().size();i++)
 			System.out.println(metodos.get(10).getLineasCodigo().get(i));
 		
-		metodos.get(0).calcularLineasComentadas();
-		metodos.get(0).calcularLineas();
-		System.out.println(metodos.get(0).getCantidadLineas());
-		System.out.println(metodos.get(0).getCantidadLineasComentadas());
-		System.out.println(metodos.get(0).getPorcentajeComentado());
 		
 		int k=7;
+		metodos.get(k).calcularLineasComentadas();
+		metodos.get(k).calcularLineas();
+		metodos.get(k).calcularPorcentajeComentado();
+		System.out.println(metodos.get(k).getCantidadLineas());
+		System.out.println(metodos.get(k).getCantidadLineasComentadas());
+		System.out.println(metodos.get(k).getPorcentajeComentado());
+		
+		
 		System.out.println(metodos.get(k).getNombre());
 		metodos.get(k).calcularComplejidadCiclomatica();
 		System.out.println(metodos.get(k).getComplejidadCiclomatica());

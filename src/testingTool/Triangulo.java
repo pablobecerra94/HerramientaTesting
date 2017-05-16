@@ -53,6 +53,14 @@ public class Triangulo {
 	}
 
 	public String definir() {
+		//linea1
+		/*lienea2*/
+		/*linea3
+		 *4 
+		 */
+		/*linea1
+		 * 
+		 p*/		
 		if (!validarLadosMayoresDistintosACero()) {
 			return "Error, valor invalido, no debe ingresar un 0, solo numeros positivos mayores a 0";
 		} else 	

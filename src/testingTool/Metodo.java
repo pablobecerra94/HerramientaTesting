@@ -1,6 +1,7 @@
 package testingTool;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Metodo {
 
@@ -59,55 +60,70 @@ public class Metodo {
 	}
 
 	public void calcularLineasComentadas() {
-		for (String lineaActual : lineasCodigoMetodo) {
-			if (lineaActual.startsWith("//"))
+		/*
+		 * for (String lineaActual : lineasCodigoMetodo) { if
+		 * (lineaActual.startsWith("//")){ cantidadLineasComentadas++;
+		 * 
+		 * } }
+		 */
+		Boolean comentarioMultiLinea = false;
+		Iterator<String> iterator = lineasCodigoMetodo.iterator();
+		while (iterator.hasNext()) {
+			String lineaActual = iterator.next();
+			
+			if(comentarioMultiLinea&& !lineaActual.contains("*/")){
 				cantidadLineasComentadas++;
+			}
+			
+			if (lineaActual.startsWith("//")) {
+				cantidadLineasComentadas++;
+			}else if (lineaActual.contains("/*")&&!lineaActual.contains("*/")) {
+				cantidadLineasComentadas++;
+				comentarioMultiLinea = true;
+			} else if (lineaActual.contains("*/")) {
+				cantidadLineasComentadas++;
+				comentarioMultiLinea = false;
+			}
 		}
 	}
+
 
 	public void calcularPorcentajeComentado() {
 		porcentajeComentado = (double) cantidadLineasComentadas / (double) cantidadLineas;
 	}
 
 	public void calcularComplejidadCiclomatica() {
-		int cant=0;
+		int cant = 0;
 		for (String lineaActual : lineasCodigoMetodo) {
-			cant=0;
+			cant = 0;
 			lineaActual = lineaActual.replace(" ", "");
 			if (lineaActual.contains("for("))
 				complejidadCiclomatica++;
 
 			if (lineaActual.contains("if(") || lineaActual.contains("while(")) {
-				cant += contarOcurrencias(lineaActual,"||");
-				cant += contarOcurrencias(lineaActual,"&&");
-				complejidadCiclomatica+=cant+1;
-			/*	if (lineaActual.contains("||")) {
-					String[] arrayOR = lineaActual.split("||");
-
-					for (String iteracionOR : arrayOR) {
-						if (!iteracionOR.contains("&&"))
-							complejidadCiclomatica++;
-						else {
-							String[] arrayAND = iteracionOR.split("&&");
-							complejidadCiclomatica += arrayAND.length;
-						}
-
-					}
-
-				} else if (lineaActual.contains("&&")) {
-					String[] arrayAND = lineaActual.split("&&");
-
-					for (String iteracionAND : arrayAND) {
-						if (!iteracionAND.contains("||"))
-							complejidadCiclomatica++;
-						else {
-							String[] arrayOR = iteracionAND.split("||");
-							complejidadCiclomatica += arrayOR.length;
-						}
-					}
-				} else {
-					complejidadCiclomatica++;
-				}*/
+				cant += contarOcurrencias(lineaActual, "||");
+				cant += contarOcurrencias(lineaActual, "&&");
+				complejidadCiclomatica += cant + 1;
+				/*
+				 * if (lineaActual.contains("||")) { String[] arrayOR =
+				 * lineaActual.split("||");
+				 * 
+				 * for (String iteracionOR : arrayOR) { if
+				 * (!iteracionOR.contains("&&")) complejidadCiclomatica++; else
+				 * { String[] arrayAND = iteracionOR.split("&&");
+				 * complejidadCiclomatica += arrayAND.length; }
+				 * 
+				 * }
+				 * 
+				 * } else if (lineaActual.contains("&&")) { String[] arrayAND =
+				 * lineaActual.split("&&");
+				 * 
+				 * for (String iteracionAND : arrayAND) { if
+				 * (!iteracionAND.contains("||")) complejidadCiclomatica++; else
+				 * { String[] arrayOR = iteracionAND.split("||");
+				 * complejidadCiclomatica += arrayOR.length; } } } else {
+				 * complejidadCiclomatica++; }
+				 */
 
 			}
 		}
@@ -115,13 +131,12 @@ public class Metodo {
 		complejidadCiclomatica++;
 	}
 
-	public int contarOcurrencias(String sTexto,String sTextoBuscado){
-		int contador=0;
+	public int contarOcurrencias(String sTexto, String sTextoBuscado) {
+		int contador = 0;
 		while (sTexto.indexOf(sTextoBuscado) > -1) {
-        sTexto = sTexto.substring(sTexto.indexOf(
-          sTextoBuscado)+sTextoBuscado.length(),sTexto.length());
-        contador++; 
-  }
+			sTexto = sTexto.substring(sTexto.indexOf(sTextoBuscado) + sTextoBuscado.length(), sTexto.length());
+			contador++;
+		}
 		return contador;
 	}
 }
