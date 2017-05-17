@@ -3,7 +3,6 @@ package testingTool;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -32,7 +31,7 @@ public class Archivo {
 			if(lineas.get(i).startsWith("class")||lineas.get(i).contains(" class ")){
 					String [] lineaActual=lineas.get(i).split(" ");
 					for(int j=0;j<lineaActual.length-1;j++){
-						if(lineaActual[j].equals("class")){
+						if(lineaActual[j].equals("class")&&!lineaActual[j+1].startsWith("\"")){
 							Clase clase = new Clase(lineaActual[j+1]);
 							clases.add(clase);
 							indiceClase++;
@@ -56,8 +55,8 @@ public class Archivo {
 		
 		System.out.println("\n\n\n\nIMPRESION DE CODIGO DE LA SEGUNDA CLASE ENCONTRADA:");
 		for(int i=0;i<clases.get(1).getLineasCodigo().size();i++)
-			System.out.println(clases.get(1).getLineasCodigo().get(i));*/
-		clases.get(0).encontrarMetodos();
+			System.out.println(clases.get(1).getLineasCodigo().get(i));
+		clases.get(0).encontrarMetodos();*/
 	}
 
 	public void leerArchivo() throws FileNotFoundException {
@@ -94,5 +93,7 @@ public class Archivo {
 	public List<Clase> getClases(){
 		return clases;
 	}
+	
+	
 
 }

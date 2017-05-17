@@ -3,6 +3,7 @@ package testingTool;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 
 public class Metodo {
 
@@ -108,6 +109,7 @@ public class Metodo {
 		 * 
 		 * } }
 		 */
+		cantidadLineasComentadas=0;
 		Boolean comentarioMultiLinea = false;
 		Iterator<String> iterator = lineasCodigoMetodo.iterator();
 		while (iterator.hasNext()) {
@@ -134,6 +136,7 @@ public class Metodo {
 	}
 
 	public void calcularComplejidadCiclomatica() {
+		complejidadCiclomatica=0;
 		int cant = 0;
 		for (String lineaActual : lineasCodigoMetodo) {
 			cant = 0;
@@ -189,7 +192,8 @@ public class Metodo {
 	}
 
 	private void contarOperandos() {
-		detectarOperandos();
+		
+		cantidadAparicionesOperandos=0;
 		for (String lineaActual : lineasCodigoMetodo) {
 			String operandos[] = lineaActual.split("^.*(if|else|case|default|for|while|catch|throw|\\+|-|\\*|\\/"
 					+ "|={1}?|!=|={2}?|<=|>=|<{1}?|>{1}?|&&|\\|{2}?|and|or|equal to).*");
@@ -200,12 +204,10 @@ public class Metodo {
 		}
 	}
 
-	private void detectarOperandos() {
-		
-
-	}
+	
 
 	private void contarOperadores() {
+		cantidadAparicionesOperadores=0;
 		for (String lineaActual : lineasCodigoMetodo) {
 			for (String operador : operadores) {
 				if (lineaActual.contains(operador)) {
@@ -224,6 +226,15 @@ public class Metodo {
 	public String toString() {
 		return nombre;
 	}
+
+	public List<String> getOperadores() {
+		return operadores;
+	}
+
+	public HashSet<String> getOperandos() {
+		return operandos;
+	}
+
 	
 	
 }

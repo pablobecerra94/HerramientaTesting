@@ -1,37 +1,26 @@
 package testingTool;
 
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.DefaultListModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JList;
-import javax.swing.JLabel;
-import javax.swing.JToolBar;
-
-import java.awt.Dimension;
-import java.awt.FileDialog;
-import java.awt.Font;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.List;
-
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextArea;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.event.MenuDragMouseEvent;
-import javax.swing.event.MenuDragMouseListener;
 
 public class HerramientaTesting extends JFrame {
 
@@ -110,6 +99,10 @@ public class HerramientaTesting extends JFrame {
 }
 
 class myPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JList<File> fileList;
 	Directory directory;
 	JList<Clase> classList;
@@ -129,6 +122,7 @@ class myPanel extends JPanel {
 	JLabel hResult;
 	JLabel l1Result;
 	JLabel l2Result;
+	private JTextArea classCodeTxtArea;
 
 	public myPanel(JList<File> fileList, Directory directory) {
 		this.fileList = fileList;
@@ -195,7 +189,7 @@ class myPanel extends JPanel {
 								+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * (0.25)) + 10,
 						100, 50);
 
-		JTextArea classCodeTxtArea = new JTextArea();
+		classCodeTxtArea = new JTextArea();
 		classCodeScrollPane.setViewportView(classCodeTxtArea);
 
 		JTextArea fileCodeTxtArea = new JTextArea();
@@ -392,7 +386,10 @@ class myPanel extends JPanel {
 			@Override
 			public void valueChanged(ListSelectionEvent arg0) {
 				try {
-					obtenerMetodos();
+					if(clase==null||!clase.equals(classList.getSelectedIndex())){
+						obtenerMetodos();
+					}
+					
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				}
@@ -415,6 +412,9 @@ class myPanel extends JPanel {
 
 	protected void cargarCampos() {
 		metodo=methodList.getSelectedValue();
+		if(metodo==null){
+			return;
+		}
 		metodo.calcularLineas();
 		metodo.calcularLineasComentadas();
 		metodo.calcularComplejidadCiclomatica();
@@ -428,8 +428,36 @@ class myPanel extends JPanel {
 		 foResult.setText("FALTA");
 		 lResult.setText(String.valueOf(metodo.calcularLongitudHalstead()));
 		 hResult.setText(String.valueOf(metodo.calcularVolumenHalstead()));
-		 l1Result.setText("despues");
-		 l2Result.setText("despues");
+		 llenarLineasDeCodigo();
+		 l2Result.setText("");
+		 l1Result.setText("");
+		 llenarOperadores();
+		 llenarOperandos();
+		 
+	}
+
+	private void llenarOperandos() {
+		
+		for(String string: metodo.getOperandos()){
+			l2Result.setText(l2Result.getText()+" "+string+" \n");
+		}
+		
+	}
+
+	private void llenarOperadores() {
+		for(String string: metodo.getOperadores()){
+			l1Result.setText(l1Result.getText()+" "+string+" \n");
+		}
+		
+		
+	}
+
+	private void llenarLineasDeCodigo() {
+		for(String linea: metodo.getLineasCodigo()){
+			classCodeTxtArea.append(linea+"\n");
+			
+		}
+		
 	}
 
 	protected void obtenerMetodos() throws ClassNotFoundException {
@@ -439,7 +467,9 @@ class myPanel extends JPanel {
 		 * 
 		 */
 		clase = classList.getSelectedValue();
-
+		if(clase==null){
+			return;
+		}
 		clase.encontrarMetodos();
 		DefaultListModel<Metodo> modelo = new DefaultListModel<>();
 
@@ -453,7 +483,6 @@ class myPanel extends JPanel {
 	protected void obtenerClases() throws FileNotFoundException {
 
 		archivo = new Archivo(fileList.getSelectedValue());
-		archivo.buscarClases();
 		DefaultListModel<Clase> modelo = new DefaultListModel<>();
 
 		for (Clase clase : archivo.getClases()) {
