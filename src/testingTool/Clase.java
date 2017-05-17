@@ -221,9 +221,7 @@ public class Clase {
 			for(Metodo metodoLlamador : metodos){
 				if(!metodoActual.getNombre().equals(metodoLlamador.getNombre())){
 					for(String lineaMetodo : metodoLlamador.getLineasCodigo()){
-						lineaMetodo.replace("\\(","P");
-						if(lineaMetodo.contains("("))
-							System.out.println("DESPUES DE PARSEAR: "+lineaMetodo);//Porque funciona esto si ya lo filtre antes ?????
+						lineaMetodo.replace(" ", "");
 						if(lineaMetodo.contains(metodoActual.getNombre()+"(")) // y no es un comentario (supongo q necesitariamos un boolean)
 							metodoActual.setFanIn(metodoActual.getFanIn()+1);
 						//lineaMetodo.
