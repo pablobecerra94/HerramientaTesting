@@ -55,8 +55,9 @@ public class Archivo {
 		
 		System.out.println("\n\n\n\nIMPRESION DE CODIGO DE LA SEGUNDA CLASE ENCONTRADA:");
 		for(int i=0;i<clases.get(1).getLineasCodigo().size();i++)
-			System.out.println(clases.get(1).getLineasCodigo().get(i));
-		clases.get(0).encontrarMetodos();*/
+			System.out.println(clases.get(1).getLineasCodigo().get(i));*/
+		
+		clases.get(0).encontrarMetodos();
 	}
 
 	public void leerArchivo() throws FileNotFoundException {

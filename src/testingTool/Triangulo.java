@@ -45,7 +45,7 @@ public class Triangulo {
 	}
 
 	public int getLado3() {
-		return lados.get(1);
+		return lados.get(2);
 	}
 
 	public void setLado3(int lado3) {

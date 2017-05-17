@@ -87,8 +87,20 @@ public class Clase {
 			met.setCantidadLineas(met.getLineasCodigo().size());
 		}*/
 
-		this.agregarLineasCodigoMetodo();
-
+	/*	this.agregarLineasCodigoMetodo();
+		this.listarMetodos();
+		for(Metodo m : metodos){
+			m.listarLineasCodigo();
+		}
+	 */
+	}
+	
+	public void listarMetodos(){
+		System.out.println("METODOS DE LA CLASE: "+this.getNombre());
+		for(Metodo m : metodos)
+			System.out.println(m.getNombre());
+		System.out.println("-----------------------------");
+		
 	}
 
 	private boolean tieneModificadores(String linea) {
@@ -98,7 +110,7 @@ public class Clase {
 	public void agregarLineasCodigoMetodo() {
 		int a = 0;
 		int contadorLlaves = 0;
-		System.out.println("-----------------------------");
+	//	System.out.println("-----------------------------");
 		for (Metodo metodoActual : metodos) {
 			a = 0;
 			contadorLlaves = 0;
@@ -115,6 +127,10 @@ public class Clase {
 			if(a>=lineasCodigoClase.size()){
 				continue;
 			}
+			
+			
+			metodoActual.getLineasCodigo().add(lineasCodigoClase.get(--a)); //Esto es para obtener la firma del metodo
+			a++;//
 			
 			do {
 				if (lineasCodigoClase.get(a).contains("{"))
@@ -197,6 +213,17 @@ public class Clase {
 		return true;
 	}
 	
-	
+	public void calcularFanInTotal(){
+		for (Metodo metodoActual : metodos){ // aguante la complejidad cubica vieja
+			for(Metodo metodoLlamador : metodos){
+				if(!metodoActual.getNombre().equals(metodoLlamador.getNombre())){
+					for(String lineaMetodo : metodoLlamador.getLineasCodigo()){
+						if(lineaMetodo.contains(metodoActual.getNombre())) // y no es un comentario (supongo q necesitariamos un boolean)
+							metodoActual.setFanIn(metodoActual.getFanIn()+1);
+					}
+				}
+			}
+		}
+	}
 
 }

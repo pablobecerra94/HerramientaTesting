@@ -19,6 +19,8 @@ public class Metodo {
 	private int longitudHalstead;
 	private double volumenHalstead;
 	private int cantidadAparicionesOperandos;
+	private int fanIn;
+	private int fanOut;
 
 	public Metodo(String nombre) {
 		this.nombre = nombre;
@@ -29,6 +31,8 @@ public class Metodo {
 		operandos = new HashSet<>();
 		cantidadAparicionesOperadores = 0;
 		cantidadAparicionesOperandos = 0;
+		fanIn=0;
+		fanOut=0;
 	}
 
 	private void inicializarOperadores() {
@@ -60,6 +64,13 @@ public class Metodo {
 		operadores.add("||");
 		operadores.add("!");
 
+	}
+	
+	public void listarLineasCodigo(){
+		System.out.println("CODIGO DEL METODO: "+this.getNombre());
+		for(String lineaActual : lineasCodigoMetodo )
+			System.out.println(lineaActual);
+		System.out.println("---------------------");
 	}
 
 	public String getNombre() {
@@ -233,6 +244,22 @@ public class Metodo {
 
 	public HashSet<String> getOperandos() {
 		return operandos;
+	}
+
+	public int getFanIn() {
+		return fanIn;
+	}
+
+	public void setFanIn(int fanIn) {
+		this.fanIn = fanIn;
+	}
+
+	public int getFanOut() {
+		return fanOut;
+	}
+
+	public void setFanOut(int fanOut) {
+		this.fanOut = fanOut;
 	}
 
 	

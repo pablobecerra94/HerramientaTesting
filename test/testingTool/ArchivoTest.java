@@ -14,14 +14,21 @@ public class ArchivoTest {
 		Archivo archivo= new Archivo(new File("src//testingTool//Archivo.java"));
 		archivo.verLineas();
 
-	}*/
+	}
 	
 	@Test
 	public void muestraLosNombresDeLasClases() throws FileNotFoundException {
 		Archivo archivo= new Archivo(new File("src//testingTool//Triangulo.java"));
 		archivo.verClases();
 
+	}*/
+
+	@Test
+	public void muestraLosMetodos() throws FileNotFoundException {
+		Archivo archivo= new Archivo(new File("src//testingTool//Triangulo.java"));
+		archivo.verClases();
+
 	}
-
-
+	
+	
 }
