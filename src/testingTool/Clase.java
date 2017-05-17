@@ -139,6 +139,9 @@ public class Clase {
 		System.out.println(metodos.get(k).getNombre());
 		metodos.get(k).calcularComplejidadCiclomatica();
 		System.out.println(metodos.get(k).getComplejidadCiclomatica());
+		
+		System.out.println("longitud Halstead: " + metodos.get(k).calcularLongitudHalstead());
+		System.out.println("volumen Halstead: " + metodos.get(k).calcularVolumenHalstead());
 	}
 
 }
