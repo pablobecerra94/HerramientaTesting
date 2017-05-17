@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class Archivo {
@@ -88,6 +89,10 @@ public class Archivo {
 		for (Clase clase : clases) {
 			System.out.println(clase);
 		}
+	}
+	
+	public List<Clase> getClases(){
+		return clases;
 	}
 
 }

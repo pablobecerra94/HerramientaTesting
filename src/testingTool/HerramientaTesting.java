@@ -23,6 +23,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -86,7 +87,7 @@ public class HerramientaTesting extends JFrame {
 	protected void cargarArchivos() {
 		directory.searchFiles(file.getAbsolutePath());
 		DefaultListModel<File> modelo = new DefaultListModel<>();
-		for(File file : directory.getFiles()) {
+		for (File file : directory.getFiles()) {
 			modelo.addElement(file);
 		}
 		fileList.setModel(modelo);
@@ -99,7 +100,7 @@ public class HerramientaTesting extends JFrame {
 
 	}
 
-	//private static final long serialVersionUID = 1L;
+	// private static final long serialVersionUID = 1L;
 
 	private void openShowDialog(ActionEvent arg0) {
 		chooser = new JFileChooser();
@@ -111,8 +112,23 @@ public class HerramientaTesting extends JFrame {
 class myPanel extends JPanel {
 	JList<File> fileList;
 	Directory directory;
-	JList<ClaseDamian> classList;
-	JList<Code> methodList;
+	JList<Clase> classList;
+	JList<Metodo> methodList;
+	Archivo archivo;
+	Clase clase;
+	Metodo metodo;
+	JLabel tlResult;
+	JLabel clResult;
+	JLabel plResult;
+	JLabel ccResult;
+	JLabel fiResult;
+	JLabel foResult;
+	JLabel lResult;
+	JLabel Lenght;
+	JLabel volume;
+	JLabel hResult;
+	JLabel l1Result;
+	JLabel l2Result;
 
 	public myPanel(JList<File> fileList, Directory directory) {
 		this.fileList = fileList;
@@ -173,7 +189,8 @@ class myPanel extends JPanel {
 
 		JLabel lblMethodCode = new JLabel("Codigo Metodo");
 		lblMethodCode.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblMethodCode.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)),
+		lblMethodCode
+				.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)),
 						55 + (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * (0.15)) + 10 + 50
 								+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * (0.25)) + 10,
 						100, 50);
@@ -206,7 +223,7 @@ class myPanel extends JPanel {
 						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05)),
 				40, (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.28)), 30);
 
-		JLabel tlResult = new JLabel("Resultado 1");
+		tlResult = new JLabel("Resultado 1");
 		tlResult.setFont(new Font("Calibri", Font.BOLD, 15));
 		tlResult.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.66))
 				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
@@ -219,7 +236,7 @@ class myPanel extends JPanel {
 						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05)),
 				80, (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.28)), 30);
 
-		JLabel clResult = new JLabel("Resultado 2");
+		clResult = new JLabel("Resultado 2");
 		clResult.setFont(new Font("Calibri", Font.BOLD, 15));
 		clResult.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.66))
 				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
@@ -232,7 +249,7 @@ class myPanel extends JPanel {
 						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05)),
 				120, (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.28)), 30);
 
-		JLabel plResult = new JLabel("Resultado 3");
+		plResult = new JLabel("Resultado 3");
 		plResult.setFont(new Font("Calibri", Font.BOLD, 15));
 		plResult.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.66))
 				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
@@ -245,7 +262,7 @@ class myPanel extends JPanel {
 						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05)),
 				160, (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.28)), 30);
 
-		JLabel ccResult = new JLabel("Resultado 4");
+		ccResult = new JLabel("Resultado 4");
 		ccResult.setFont(new Font("Calibri", Font.BOLD, 15));
 		ccResult.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.66))
 				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
@@ -258,7 +275,7 @@ class myPanel extends JPanel {
 						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05)),
 				200, (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.28)), 30);
 
-		JLabel fiResult = new JLabel("Resultado 5");
+		fiResult = new JLabel("Resultado 5");
 		fiResult.setFont(new Font("Calibri", Font.BOLD, 15));
 		fiResult.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.66))
 				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
@@ -271,55 +288,55 @@ class myPanel extends JPanel {
 						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05)),
 				240, (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.28)), 30);
 
-		JLabel foResult = new JLabel("Resultado 6");
+		foResult = new JLabel("Resultado 6");
 		foResult.setFont(new Font("Calibri", Font.BOLD, 15));
 		foResult.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.66))
 				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
 				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)), 260, 100, 30);
 
-		JLabel Lenght = new JLabel("Hastead Longitud");
+		Lenght = new JLabel("Hastead Longitud");
 		Lenght.setFont(new Font("Calibri", Font.ITALIC, 15));
 		Lenght.setBounds(
 				(int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.66))
 						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05)),
 				280, (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.28)), 30);
 
-		JLabel lResult = new JLabel("Resultado 7");
+		lResult = new JLabel("Resultado 7");
 		lResult.setFont(new Font("Calibri", Font.BOLD, 15));
 		lResult.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.66))
 				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
 				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)), 300, 100, 30);
 
-		JLabel volume = new JLabel("Hastead Volumen");
+		volume = new JLabel("Hastead Volumen");
 		volume.setFont(new Font("Calibri", Font.ITALIC, 15));
 		volume.setBounds(
 				(int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.66))
 						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05)),
 				320, (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.28)), 30);
 
-		JLabel hResult = new JLabel("Resultado 8");
+		hResult = new JLabel("Resultado 8");
 		hResult.setFont(new Font("Calibri", Font.BOLD, 15));
 		hResult.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.66))
 				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
 				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)), 340, 100, 30);
 
-		JLabel label1 = new JLabel("Label 1");
+		JLabel label1 = new JLabel("Operadores");
 		label1.setFont(new Font("Calibri", Font.ITALIC, 15));
 		label1.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.66))
 				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05)), 360, 150, 30);
 
-		JLabel l1Result = new JLabel("Resultado 9");
+		l1Result = new JLabel("Resultado 9");
 		l1Result.setFont(new Font("Calibri", Font.BOLD, 15));
 		l1Result.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.66))
 				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
 				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)), 380, 100, 30);
 
-		JLabel label2 = new JLabel("Label 2");
+		JLabel label2 = new JLabel("Operandos");
 		label2.setFont(new Font("Calibri", Font.ITALIC, 15));
 		label2.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.66))
 				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05)), 400, 150, 30);
 
-		JLabel l2Result = new JLabel("Resultado 10");
+		l2Result = new JLabel("Resultado 10");
 		l2Result.setFont(new Font("Calibri", Font.BOLD, 15));
 		l2Result.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.66))
 				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
@@ -359,7 +376,13 @@ class myPanel extends JPanel {
 
 			@Override
 			public void valueChanged(ListSelectionEvent arg0) {
-				obtenerClases(directory.listClasses(fileList.getSelectedValue()));
+				try {
+					obtenerClases();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
 
 		});
@@ -371,33 +394,69 @@ class myPanel extends JPanel {
 				try {
 					obtenerMetodos();
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 
 		});
 
+		methodList.addListSelectionListener(new ListSelectionListener() {
+
+			@Override
+			public void valueChanged(ListSelectionEvent arg0) {
+
+				cargarCampos();
+
+			}
+
+		});
+
+	}
+
+	protected void cargarCampos() {
+		metodo=methodList.getSelectedValue();
+		metodo.calcularLineas();
+		metodo.calcularLineasComentadas();
+		metodo.calcularComplejidadCiclomatica();
+		
+		
+		 tlResult.setText(String.valueOf(metodo.getCantidadLineas()));
+		 clResult.setText(String.valueOf(metodo.getCantidadLineasComentadas()));
+		 plResult.setText(String.valueOf(metodo.getPorcentajeComentado()));
+		 ccResult.setText(String.valueOf(metodo.getComplejidadCiclomatica()));
+		 fiResult.setText("FALTA");
+		 foResult.setText("FALTA");
+		 lResult.setText(String.valueOf(metodo.calcularLongitudHalstead()));
+		 hResult.setText(String.valueOf(metodo.calcularVolumenHalstead()));
+		 l1Result.setText("despues");
+		 l2Result.setText("despues");
 	}
 
 	protected void obtenerMetodos() throws ClassNotFoundException {
-		directory.selectClass(classList.getSelectedValue());
-		directory.readClass();
+		/*
+		 * directory.selectClass(classList.getSelectedValue());
+		 * directory.readClass();
+		 * 
+		 */
+		clase = classList.getSelectedValue();
 
-		DefaultListModel<Code> modelo = new DefaultListModel<>();
+		clase.encontrarMetodos();
+		DefaultListModel<Metodo> modelo = new DefaultListModel<>();
 
-		for (Code clase : classList.getSelectedValue().getMethods()) {
-			modelo.addElement(clase);
+		for (Metodo metodo : clase.getMetodos()) {
+			modelo.addElement(metodo);
 		}
 		methodList.setModel(modelo);
 
 	}
 
-	protected void obtenerClases(List<ClaseDamian> list) {
+	protected void obtenerClases() throws FileNotFoundException {
 
-		DefaultListModel<ClaseDamian> modelo = new DefaultListModel<>();
+		archivo = new Archivo(fileList.getSelectedValue());
+		archivo.buscarClases();
+		DefaultListModel<Clase> modelo = new DefaultListModel<>();
 
-		for (ClaseDamian clase : list) {
+		for (Clase clase : archivo.getClases()) {
 			modelo.addElement(clase);
 		}
 		classList.setModel(modelo);

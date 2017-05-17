@@ -219,4 +219,11 @@ public class Metodo {
 		volumenHalstead=longitudHalstead*(Math.log(operadores.size()+operandos.size()) / Math.log(2));
 		return volumenHalstead;
 	}
+
+	@Override
+	public String toString() {
+		return nombre;
+	}
+	
+	
 }

@@ -1,6 +1,7 @@
 package testingTool;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Clase {
 	
@@ -122,7 +123,7 @@ public class Clase {
 			
 		}
 		
-		System.out.println("\n\n\nCODIGO DEL PRIMER METODO:");
+	/*	System.out.println("\n\n\nCODIGO DEL PRIMER METODO:");
 		for(int i=0;i<metodos.get(10).getLineasCodigo().size();i++)
 			System.out.println(metodos.get(10).getLineasCodigo().get(i));
 		
@@ -141,7 +142,11 @@ public class Clase {
 		System.out.println(metodos.get(k).getComplejidadCiclomatica());
 		
 		System.out.println("longitud Halstead: " + metodos.get(k).calcularLongitudHalstead());
-		System.out.println("volumen Halstead: " + metodos.get(k).calcularVolumenHalstead());
+		System.out.println("volumen Halstead: " + metodos.get(k).calcularVolumenHalstead());*/
+	}
+
+	public List<Metodo> getMetodos() {
+		return metodos;
 	}
 
 }
