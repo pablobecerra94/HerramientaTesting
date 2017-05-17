@@ -93,6 +93,9 @@ public class Clase {
 			m.listarLineasCodigo();
 		}
 	 */
+		
+		this.agregarLineasCodigoMetodo();
+		this.calcularFanInTotal();
 	}
 	
 	public void listarMetodos(){
@@ -218,11 +221,19 @@ public class Clase {
 			for(Metodo metodoLlamador : metodos){
 				if(!metodoActual.getNombre().equals(metodoLlamador.getNombre())){
 					for(String lineaMetodo : metodoLlamador.getLineasCodigo()){
-						if(lineaMetodo.contains(metodoActual.getNombre())) // y no es un comentario (supongo q necesitariamos un boolean)
+						lineaMetodo.replace("\\(","P");
+						if(lineaMetodo.contains("("))
+							System.out.println("DESPUES DE PARSEAR: "+lineaMetodo);//Porque funciona esto si ya lo filtre antes ?????
+						if(lineaMetodo.contains(metodoActual.getNombre()+"(")) // y no es un comentario (supongo q necesitariamos un boolean)
 							metodoActual.setFanIn(metodoActual.getFanIn()+1);
+						//lineaMetodo.
 					}
 				}
 			}
+		}
+		
+		for (Metodo m : metodos){
+			System.out.println("FAN IN DEL METODO "+m.getNombre()+"="+m.getFanIn());
 		}
 	}
 

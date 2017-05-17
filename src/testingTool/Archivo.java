@@ -48,16 +48,7 @@ public class Archivo {
 		for(Clase clase : clases)
 			clase.setCantidadLineas(clase.getLineasCodigo().size());
 		
-		
-	/*	System.out.println("IMPRESION DE CODIGO DE LA PRIMERA CLASE ENCONTRADA:");
-		for(int i=0;i<clases.get(0).getLineasCodigo().size();i++)
-			System.out.println(clases.get(0).getLineasCodigo().get(i));
-		
-		System.out.println("\n\n\n\nIMPRESION DE CODIGO DE LA SEGUNDA CLASE ENCONTRADA:");
-		for(int i=0;i<clases.get(1).getLineasCodigo().size();i++)
-			System.out.println(clases.get(1).getLineasCodigo().get(i));*/
-		
-		clases.get(0).encontrarMetodos();
+		clases.get(0).encontrarMetodos(); //Comentar 
 	}
 
 	public void leerArchivo() throws FileNotFoundException {
