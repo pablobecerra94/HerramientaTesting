@@ -115,6 +115,7 @@ public class Clase {
 		int contadorLlaves = 0;
 	//	System.out.println("-----------------------------");
 		for (Metodo metodoActual : metodos) {
+			metodoActual.limpiarLineas();
 			a = 0;
 			contadorLlaves = 0;
 			while (a<lineasCodigoClase.size()&&!lineasCodigoClase.get(a).contains(metodoActual.getNombre())
@@ -147,41 +148,19 @@ public class Clase {
 
 		}
 
-		/*
-		 * System.out.println("\n\n\nCODIGO DEL PRIMER METODO:"); for(int
-		 * i=0;i<metodos.get(10).getLineasCodigo().size();i++)
-		 * System.out.println(metodos.get(10).getLineasCodigo().get(i));
-		 * 
-		 * 
-		 * int k=7; metodos.get(k).calcularLineasComentadas();
-		 * metodos.get(k).calcularLineas();
-		 * metodos.get(k).calcularPorcentajeComentado();
-		 * System.out.println(metodos.get(k).getCantidadLineas());
-		 * System.out.println(metodos.get(k).getCantidadLineasComentadas());
-		 * System.out.println(metodos.get(k).getPorcentajeComentado());
-		 * 
-		 * 
-		 * System.out.println(metodos.get(k).getNombre());
-		 * metodos.get(k).calcularComplejidadCiclomatica();
-		 * System.out.println(metodos.get(k).getComplejidadCiclomatica());
-		 * 
-		 * System.out.println("longitud Halstead: " +
-		 * metodos.get(k).calcularLongitudHalstead());
-		 * System.out.println("volumen Halstead: " +
-		 * metodos.get(k).calcularVolumenHalstead());
-		 */
+		
 	}
 
 	public List<Metodo> getMetodos() {
 		return metodos;
 	}
 
+
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + cantidadLineas;
-		result = prime * result + ((lineasCodigoClase == null) ? 0 : lineasCodigoClase.hashCode());
 		result = prime * result + ((metodos == null) ? 0 : metodos.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
@@ -196,13 +175,6 @@ public class Clase {
 		if (getClass() != obj.getClass())
 			return false;
 		Clase other = (Clase) obj;
-		if (cantidadLineas != other.cantidadLineas)
-			return false;
-		if (lineasCodigoClase == null) {
-			if (other.lineasCodigoClase != null)
-				return false;
-		} else if (!lineasCodigoClase.equals(other.lineasCodigoClase))
-			return false;
 		if (metodos == null) {
 			if (other.metodos != null)
 				return false;
@@ -215,11 +187,11 @@ public class Clase {
 			return false;
 		return true;
 	}
-	
+
 	public void calcularFanInTotal(){
 		for (Metodo metodoActual : metodos){ // aguante la complejidad cubica vieja
 			for(Metodo metodoLlamador : metodos){
-				if(!metodoActual.getNombre().equals(metodoLlamador.getNombre())){
+				if(!metodoActual.equals(metodoLlamador)){
 					for(String lineaMetodo : metodoLlamador.getLineasCodigo()){
 						lineaMetodo.replace(" ", "");
 						if(lineaMetodo.contains(metodoActual.getNombre()+"(")) // y no es un comentario (supongo q necesitariamos un boolean)

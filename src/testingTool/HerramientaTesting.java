@@ -373,7 +373,7 @@ class myPanel extends JPanel {
 				try {
 					obtenerClases();
 				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 
@@ -386,6 +386,7 @@ class myPanel extends JPanel {
 			@Override
 			public void valueChanged(ListSelectionEvent arg0) {
 				try {
+					
 					if(clase==null||!clase.equals(classList.getSelectedIndex())){
 						obtenerMetodos();
 					}
@@ -470,7 +471,7 @@ class myPanel extends JPanel {
 		if(clase==null){
 			return;
 		}
-		clase.encontrarMetodos();
+		
 		DefaultListModel<Metodo> modelo = new DefaultListModel<>();
 
 		for (Metodo metodo : clase.getMetodos()) {
