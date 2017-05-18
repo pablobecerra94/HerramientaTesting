@@ -85,11 +85,7 @@ public class HerramientaTesting extends JFrame {
 
 	protected void obtenerArchivo() {
 		file = chooser.getSelectedFile();
-		System.out.println(file.getAbsolutePath());
-
 	}
-
-	// private static final long serialVersionUID = 1L;
 
 	private void openShowDialog(ActionEvent arg0) {
 		chooser = new JFileChooser();
@@ -425,8 +421,8 @@ class myPanel extends JPanel {
 		 clResult.setText(String.valueOf(metodo.getCantidadLineasComentadas()));
 		 plResult.setText(String.valueOf(metodo.getPorcentajeComentado()));
 		 ccResult.setText(String.valueOf(metodo.getComplejidadCiclomatica()));
-		 fiResult.setText("FALTA");
-		 foResult.setText("FALTA");
+		 fiResult.setText(String.valueOf(metodo.getFanIn()));
+		 foResult.setText(String.valueOf(metodo.getFanOut()));
 		 lResult.setText(String.valueOf(metodo.calcularLongitudHalstead()));
 		 hResult.setText(String.valueOf(metodo.calcularVolumenHalstead()));
 		 llenarLineasDeCodigo();
@@ -454,6 +450,8 @@ class myPanel extends JPanel {
 	}
 
 	private void llenarLineasDeCodigo() {
+		classCodeTxtArea.setText(metodo.getFirma()+"\n");
+		
 		for(String linea: metodo.getLineasCodigo()){
 			classCodeTxtArea.append(linea+"\n");
 			

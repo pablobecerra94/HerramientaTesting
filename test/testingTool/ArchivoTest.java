@@ -23,12 +23,7 @@ public class ArchivoTest {
 
 	}*/
 
-	@Test
-	public void muestraLosMetodos() throws FileNotFoundException {
-		Archivo archivo= new Archivo(new File("src//testingTool//Triangulo.java"));
-		archivo.verClases();
-
-	}
+	
 	
 	
 }

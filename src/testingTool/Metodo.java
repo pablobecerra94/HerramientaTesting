@@ -8,6 +8,7 @@ import java.util.List;
 public class Metodo {
 
 	private String nombre;
+	private String firma;
 	private ArrayList<String> lineasCodigoMetodo;
 	private int cantidadLineas;
 	private int cantidadLineasComentadas;
@@ -34,6 +35,20 @@ public class Metodo {
 		fanIn=0;
 		fanOut=0;
 	}
+
+	
+	
+	public String getFirma() {
+		return firma;
+	}
+
+
+
+	public void setFirma(String firma) {
+		this.firma = firma;
+	}
+
+
 
 	private void inicializarOperadores() {
 		operadores = new ArrayList<>();
@@ -64,13 +79,6 @@ public class Metodo {
 		operadores.add("||");
 		operadores.add("!");
 
-	}
-	
-	public void listarLineasCodigo(){
-		System.out.println("CODIGO DEL METODO: "+this.getNombre());
-		for(String lineaActual : lineasCodigoMetodo )
-			System.out.println(lineaActual);
-		System.out.println("---------------------");
 	}
 
 	public String getNombre() {
@@ -159,27 +167,7 @@ public class Metodo {
 				cant += contarOcurrencias(lineaActual, "||");
 				cant += contarOcurrencias(lineaActual, "&&");
 				complejidadCiclomatica += cant + 1;
-				/*
-				 * if (lineaActual.contains("||")) { String[] arrayOR =
-				 * lineaActual.split("||");
-				 * 
-				 * for (String iteracionOR : arrayOR) { if
-				 * (!iteracionOR.contains("&&")) complejidadCiclomatica++; else
-				 * { String[] arrayAND = iteracionOR.split("&&");
-				 * complejidadCiclomatica += arrayAND.length; }
-				 * 
-				 * }
-				 * 
-				 * } else if (lineaActual.contains("&&")) { String[] arrayAND =
-				 * lineaActual.split("&&");
-				 * 
-				 * for (String iteracionAND : arrayAND) { if
-				 * (!iteracionAND.contains("||")) complejidadCiclomatica++; else
-				 * { String[] arrayOR = iteracionAND.split("||");
-				 * complejidadCiclomatica += arrayOR.length; } } } else {
-				 * complejidadCiclomatica++; }
-				 */
-
+				
 			}
 		}
 

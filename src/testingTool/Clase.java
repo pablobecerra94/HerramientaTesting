@@ -14,8 +14,6 @@ public class Clase {
 		this.nombre = nombre;
 		this.lineasCodigoClase = new ArrayList<String>();
 		this.metodos = new ArrayList<Metodo>();
-		
-		//encontrarMetodos();
 	}
 
 	public String getNombre() {
@@ -48,8 +46,8 @@ public class Clase {
 	}
 
 	public void encontrarMetodos() {
-		String[] auxiliar = new String[10]; // perdon por esto, es un parche
-											// jaja
+		String[] auxiliar = new String[10];
+
 		String nombreMetodo;
 
 		for (String linea : lineasCodigoClase) {
@@ -63,7 +61,7 @@ public class Clase {
 					else
 						nombreMetodo = auxiliar[3];
 				} else {
-					// if(!linea.contains(this.getNombre())){
+
 					if (!linea.contains(" " + this.getNombre() + "(")) {
 						if (auxiliar[2].contains("("))
 							nombreMetodo = auxiliar[2].substring(0, auxiliar[2].indexOf("("));
@@ -82,28 +80,9 @@ public class Clase {
 
 		}
 
-		/*for (Metodo met : metodos) {
-			System.out.println(met.getNombre());
-			met.setCantidadLineas(met.getLineasCodigo().size());
-		}*/
-
-	/*	this.agregarLineasCodigoMetodo();
-		this.listarMetodos();
-		for(Metodo m : metodos){
-			m.listarLineasCodigo();
-		}
-	 */
-		
 		this.agregarLineasCodigoMetodo();
 		this.calcularFanInTotal();
-	}
-	
-	public void listarMetodos(){
-		System.out.println("METODOS DE LA CLASE: "+this.getNombre());
-		for(Metodo m : metodos)
-			System.out.println(m.getNombre());
-		System.out.println("-----------------------------");
-		
+		this.calcularFanOutTotal();
 	}
 
 	private boolean tieneModificadores(String linea) {
@@ -113,29 +92,27 @@ public class Clase {
 	public void agregarLineasCodigoMetodo() {
 		int a = 0;
 		int contadorLlaves = 0;
-	//	System.out.println("-----------------------------");
+
 		for (Metodo metodoActual : metodos) {
 			metodoActual.limpiarLineas();
 			a = 0;
 			contadorLlaves = 0;
-			while (a<lineasCodigoClase.size()&&!lineasCodigoClase.get(a).contains(metodoActual.getNombre())
+			while (a < lineasCodigoClase.size() && !lineasCodigoClase.get(a).contains(metodoActual.getNombre())
 					|| lineasCodigoClase.get(a).contains(";") || !tieneModificadores(lineasCodigoClase.get(a)))
 				a++;
 
-			if (a<lineasCodigoClase.size()&&lineasCodigoClase.get(a).contains("{")){
+			if (a < lineasCodigoClase.size() && lineasCodigoClase.get(a).contains("{")) {
 				contadorLlaves++;
 				a++;
 			}
-				
-			
-			if(a>=lineasCodigoClase.size()){
+
+			if (a >= lineasCodigoClase.size()) {
 				continue;
 			}
-			
-			
-			metodoActual.getLineasCodigo().add(lineasCodigoClase.get(--a)); //Esto es para obtener la firma del metodo
+
+			metodoActual.setFirma(lineasCodigoClase.get(--a));
 			a++;//
-			
+
 			do {
 				if (lineasCodigoClase.get(a).contains("{"))
 					contadorLlaves++;
@@ -148,15 +125,12 @@ public class Clase {
 
 		}
 
-		
 	}
 
 	public List<Metodo> getMetodos() {
 		return metodos;
 	}
 
-
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -188,22 +162,60 @@ public class Clase {
 		return true;
 	}
 
-	public void calcularFanInTotal(){
-		for (Metodo metodoActual : metodos){ // aguante la complejidad cubica vieja
-			for(Metodo metodoLlamador : metodos){
-				if(!metodoActual.equals(metodoLlamador)){
-					for(String lineaMetodo : metodoLlamador.getLineasCodigo()){
-						lineaMetodo.replace(" ", "");
-						if(lineaMetodo.contains(metodoActual.getNombre()+"(")) // y no es un comentario (supongo q necesitariamos un boolean)
-							metodoActual.setFanIn(metodoActual.getFanIn()+1);
-						//lineaMetodo.
+	public void calcularFanInTotal() {
+		int posicion = 0;
+		char letra;
+		String lineaActual;
+		for (Metodo metodoActual : metodos) { // aguante la complejidad cubica
+												// vieja
+			for (Metodo metodoLlamador : metodos) {
+				if (!metodoActual.equals(metodoLlamador)) {
+					for (String lineaMetodo : metodoLlamador.getLineasCodigo()) {
+
+						lineaActual = lineaMetodo.replace(" ", "");
+						posicion = lineaActual.indexOf(metodoActual.getNombre() + "(");
+						if (posicion != -1) {
+							if (posicion == 0)
+								metodoActual.setFanIn(metodoActual.getFanIn() + 1);
+
+							else {
+								posicion--;
+								if (!Character.isLetter(lineaActual.charAt(posicion)))
+									metodoActual.setFanIn(metodoActual.getFanIn() + 1);
+							}
+
+						}
 					}
 				}
 			}
 		}
-		
-		for (Metodo m : metodos){
-			System.out.println("FAN IN DEL METODO "+m.getNombre()+"="+m.getFanIn());
+
+	}
+
+	public void calcularFanOutTotal() {
+		String lineaActual;
+		int posicion = 0;
+		for (Metodo metodoActual : metodos) {
+			for (Metodo metodoLlamado : metodos) {
+				if (!metodoActual.equals(metodoLlamado)) {
+					for (String lineaMetodo : metodoActual.getLineasCodigo()) {
+						lineaActual = lineaMetodo.replace(" ", "");
+						posicion = lineaActual.indexOf(metodoLlamado.getNombre() + "(");
+						if (posicion != -1) {
+							if (posicion == 0)
+								metodoActual.setFanOut(metodoActual.getFanOut() + 1);
+
+							else {
+								posicion--;
+								if (!Character.isLetter(lineaActual.charAt(posicion)))
+									metodoActual.setFanOut(metodoActual.getFanOut() + 1);
+							}
+
+						}
+
+					}
+				}
+			}
 		}
 	}
 

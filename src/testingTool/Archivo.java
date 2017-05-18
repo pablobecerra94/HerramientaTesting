@@ -70,17 +70,7 @@ public class Archivo {
 		return lineaActual.replaceAll("\r", "").replaceAll("\n", "").replaceAll("\t","");
 	}
 
-	public void verLineas() {
-		for (String linea : lineas) {
-			System.out.println(linea);
-		}
-	}
-
-	public void verClases() {
-		for (Clase clase : clases) {
-			System.out.println(clase);
-		}
-	}
+	
 	
 	public List<Clase> getClases(){
 		return clases;
