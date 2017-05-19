@@ -138,7 +138,7 @@ public class Metodo {
 				cantidadLineasComentadas++;
 			}
 
-			if (lineaActual.startsWith("//")) {
+			if (lineaActual.contains("//")) {
 				cantidadLineasComentadas++;
 			} else if (lineaActual.contains("/*") && !lineaActual.contains("*/")) {
 				cantidadLineasComentadas++;

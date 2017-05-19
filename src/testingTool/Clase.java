@@ -106,7 +106,7 @@ public class Clase {
 				a++;
 			}
 
-			if (a >= lineasCodigoClase.size()) {
+			if (a >= lineasCodigoClase.size()||a==0) {
 				continue;
 			}
 

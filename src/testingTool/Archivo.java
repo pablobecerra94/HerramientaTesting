@@ -40,6 +40,7 @@ public class Archivo {
 					
 			}
 			else{
+				if(indiceClase!=-1)
 				clases.get(indiceClase).getLineasCodigo().add(lineas.get(i));
 			}
 				
