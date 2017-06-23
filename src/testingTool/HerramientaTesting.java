@@ -37,7 +37,7 @@ public class HerramientaTesting extends JFrame {
 
 		// automatiza la vista del frame a la pantalla del computador
 
-		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		Dimension dimension = new Dimension(1024,600);
 
 		this.setSize(dimension);
 
@@ -127,38 +127,40 @@ class myPanel extends JPanel {
 		setLayout(null);
 
 		JScrollPane fileScrollPane = new JScrollPane();
-		fileScrollPane.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)), 55,
-				(int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50)),
-				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * (0.15)));
+		fileScrollPane.setBounds((int) (800 * (0.02)), 55,
+				(int) (800 * (0.66)),
+				(int) (600 * (0.15)));
 
 		JLabel lblArchivos = new JLabel("Archivos");
 		lblArchivos.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblArchivos.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)),
-				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * (0.02)), 100, 30);
+		lblArchivos.setBounds((int) (800 * (0.02)),
+				(int) (600 * (0.02)), 100, 30);
 
 		JLabel lblClases = new JLabel("Clases");
 		lblClases.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblClases.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)),
-				55 + (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * (0.15)) + 10, 100, 50);
+		lblClases.setBounds((int) (800 * (0.02)),
+				55 + (int) (600 * (0.15)) + 10, 100, 50);
 
 		JScrollPane classScrollPane = new JScrollPane();
-		classScrollPane.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)),
-				55 + (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * (0.15)) + 10 + 50,
-				(int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.24)),
-				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * (0.25)));
+		classScrollPane.setBounds((int) (800 * (0.02)),
+				55 + (int) (600 * (0.15)) + 10 + 50,
+				(int) (800 * (0.32)),
+				(int) (600 * (0.25)));
 
 		JScrollPane methodScrollPane = new JScrollPane();
-		methodScrollPane.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.28)),
-				55 + (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * (0.15)) + 10 + 50,
-				(int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.24)),
-				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * (0.25)));
+		methodScrollPane.setBounds(
+				(int) (800 * (0.30))
+						+ (int) (800 * (0.06)),
+				55 + (int) (600 * (0.15)) + 10 + 50,
+				(int) (800 * (0.32)),
+				(int) (600 * (0.25)));
 
 		JLabel lblMetodos = new JLabel("Metodos");
 		lblMetodos.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblMetodos.setBounds(
-				(int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.28))
-						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.06)),
-				55 + (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * (0.15)) + 10, 100, 50);
+				(int) (800 * (0.30))
+						+ (int) (800 * (0.06)),
+				55 + (int) (600 * (0.15)) + 10, 100, 50);
 
 		JLabel lblCodigoArchivo = new JLabel("Codigo Archivo");
 		lblCodigoArchivo.setFont(new Font("Calibri", Font.BOLD, 15));
@@ -169,20 +171,20 @@ class myPanel extends JPanel {
 		lblClassCode.setFont(new Font("Calibri", Font.BOLD, 15));
 
 		JScrollPane classCodeScrollPane = new JScrollPane();
-		classCodeScrollPane.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)),
-				55 + (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * (0.15)) + 10 + 50
-						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * (0.25)) + 10 + 50,
-				(int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
-						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.20)),
-				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * (0.225)));
+		classCodeScrollPane.setBounds((int) (800 * (0.02)),
+				55 + (int) (600 * (0.15)) + 10 + 50
+						+ (int) (600 * (0.25)) + 10 + 40,
+				(int) (800 * (1.210)),
+				(int) (600 * (0.19)));
+		
+		
 
 		JLabel lblMethodCode = new JLabel("Codigo Metodo");
 		lblMethodCode.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblMethodCode
-				.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)),
-						55 + (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * (0.15)) + 10 + 50
-								+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * (0.25)) + 10,
+				.setBounds((int) (800 * (0.02)),
+						55 + (int) (600 * (0.15)) + 10 + 50
+								+ (int) (600 * (0.25)) + 10,
 						100, 50);
 
 		classCodeTxtArea = new JTextArea();
@@ -199,148 +201,151 @@ class myPanel extends JPanel {
 
 		fileScrollPane.setViewportView(fileList);
 
-		JLabel title = new JLabel("Análisis del Método");
+		JLabel title = new JLabel("AnÃ¡lisis del MÃ©todo");
 		title.setFont(new Font("Calibri", Font.BOLD, 15));
 		title.setBounds(
-				(int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05)),
-				5, (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.28)), 50);
+				(int) (800 * (0.66))
+						+ (int) (800 * (0.05)),
+				5, (int) (800 * (0.28)), 10);
 
-		JLabel totalLines = new JLabel("Lineas de Código Totales");
+		JLabel totalLines = new JLabel("Lineas de CÃ³digo Totales");
 		totalLines.setFont(new Font("Calibri", Font.ITALIC, 15));
 		totalLines.setBounds(
-				(int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05)),
-				40, (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.28)), 30);
+				(int) (800 * (0.66))
+						+ (int) (800 * (0.05)),
+				15, (int) (800 * (0.28)), 30);
 
 		tlResult = new JLabel("Resultado 1");
 		tlResult.setFont(new Font("Calibri", Font.BOLD, 15));
-		tlResult.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)), 60, 100, 30);
+		tlResult.setBounds((int) (800 * (0.66))
+				+ (int) (800 * (0.05))
+				+ (int) (800 * (0.02)), 35, 100, 30);
 
-		JLabel commentedLines = new JLabel("Lineas de Código Comentadas");
+		JLabel commentedLines = new JLabel("Lineas de CÃ³digo Comentadas");
 		commentedLines.setFont(new Font("Calibri", Font.ITALIC, 15));
 		commentedLines.setBounds(
-				(int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05)),
-				80, (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.28)), 30);
+				(int) (800 * (0.66))
+						+ (int) (800 * (0.05)),
+				55, (int) (800 * (0.28)), 30);
 
 		clResult = new JLabel("Resultado 2");
 		clResult.setFont(new Font("Calibri", Font.BOLD, 15));
-		clResult.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)), 100, 100, 30);
+		clResult.setBounds((int) (800 * (0.66))
+				+ (int) (800 * (0.05))
+				+ (int) (800 * (0.02)), 75, 100, 30);
 
-		JLabel porcentLines = new JLabel("Porcentaje de Lineas de Código Comentadas");
+		JLabel porcentLines = new JLabel("% de Lineas de CÃ³digo Comentadas");
 		porcentLines.setFont(new Font("Calibri", Font.ITALIC, 15));
 		porcentLines.setBounds(
-				(int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05)),
-				120, (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.28)), 30);
+				(int) (800 * (0.66))
+						+ (int) (800 * (0.05)),
+				95, (int) (800 * (0.28)), 30);
 
 		plResult = new JLabel("Resultado 3");
 		plResult.setFont(new Font("Calibri", Font.BOLD, 15));
-		plResult.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)), 140, 100, 30);
+		plResult.setBounds((int) (800 * (0.66))
+				+ (int) (800 * (0.05))
+				+ (int) (800 * (0.02)), 115, 100, 30);
 
-		JLabel complex = new JLabel("Complejidad Ciclomática");
+		JLabel complex = new JLabel("Complejidad CiclomÃ¡tica");
 		complex.setFont(new Font("Calibri", Font.ITALIC, 15));
 		complex.setBounds(
-				(int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05)),
-				160, (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.28)), 30);
+				(int) (800 * (0.66))
+						+ (int) (800 * (0.05)),
+				135, (int) (800 * (0.28)), 30);
 
 		ccResult = new JLabel("Resultado 4");
 		ccResult.setFont(new Font("Calibri", Font.BOLD, 15));
-		ccResult.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)), 180, 100, 30);
+		ccResult.setBounds((int) (800 * (0.66))
+				+ (int) (800 * (0.05))
+				+ (int) (800 * (0.02)), 155, 100, 30);
 
 		JLabel fanIn = new JLabel("Fan In");
 		fanIn.setFont(new Font("Calibri", Font.ITALIC, 15));
 		fanIn.setBounds(
-				(int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05)),
-				200, (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.28)), 30);
+				(int) (800 * (0.66))
+						+ (int) (800 * (0.05)),
+				175, (int) (800 * (0.28)), 30);
 
 		fiResult = new JLabel("Resultado 5");
 		fiResult.setFont(new Font("Calibri", Font.BOLD, 15));
-		fiResult.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)), 220, 100, 30);
+		fiResult.setBounds((int) (800 * (0.66))
+				+ (int) (800 * (0.05))
+				+ (int) (800 * (0.02)), 195, 100, 30);
 
 		JLabel fanOut = new JLabel("Fan Out");
 		fanOut.setFont(new Font("Calibri", Font.ITALIC, 15));
 		fanOut.setBounds(
-				(int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05)),
-				240, (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.28)), 30);
+				(int) (800 * (0.66))
+						+ (int) (800 * (0.05)),
+				215, (int) (800 * (0.28)), 30);
 
 		foResult = new JLabel("Resultado 6");
 		foResult.setFont(new Font("Calibri", Font.BOLD, 15));
-		foResult.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)), 260, 100, 30);
+		foResult.setBounds((int) (800 * (0.66))
+				+ (int) (800 * (0.05))
+				+ (int) (800 * (0.02)), 235, 100, 30);
 
 		Lenght = new JLabel("Hastead Longitud");
 		Lenght.setFont(new Font("Calibri", Font.ITALIC, 15));
 		Lenght.setBounds(
-				(int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05)),
-				280, (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.28)), 30);
+				(int) (800 * (0.66))
+						+ (int) (800 * (0.05)),
+				255, (int) (800 * (0.28)), 30);
 
 		lResult = new JLabel("Resultado 7");
 		lResult.setFont(new Font("Calibri", Font.BOLD, 15));
-		lResult.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)), 300, 100, 30);
+		lResult.setBounds((int) (800 * (0.66))
+				+ (int) (800 * (0.05))
+				+ (int) (800 * (0.02)), 275, 100, 30);
 
 		volume = new JLabel("Hastead Volumen");
 		volume.setFont(new Font("Calibri", Font.ITALIC, 15));
 		volume.setBounds(
-				(int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-						+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05)),
-				320, (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.28)), 30);
+				(int) (800 * (0.66))
+						+ (int) (800 * (0.05)),
+				295, (int) (800 * (0.28)), 30);
 
 		hResult = new JLabel("Resultado 8");
 		hResult.setFont(new Font("Calibri", Font.BOLD, 15));
-		hResult.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02)), 340, 100, 30);
+		hResult.setBounds((int) (800 * (0.66))
+				+ (int) (800 * (0.05))
+				+ (int) (800 * (0.02)), 315, 100, 30);
 
 		JLabel label1 = new JLabel("Operadores");
 		label1.setFont(new Font("Calibri", Font.ITALIC, 15));
-		label1.setBounds((int) ((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
-				+ (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.24))), 40, 80, 30);
+		label1.setBounds((int) ((int) (1024 * (0.50))
+				+ (int) (1024 * (0.05))
+				+ (1024 * (0.02))
+				+ (int) (1024 * (0.02))
+				+ (int) (1024 * (0.20))), 15, 80, 30);
 
 		l1Result = new JTextArea("Resultado 9");
 		l1Result.setFont(new Font("Calibri", Font.BOLD, 15));
-		l1Result.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.02))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.24)), 60, 80, 1000);
+		l1Result.setBounds((int) (1024 * (0.50))
+				+ (int) (1024 * (0.05))
+				+ (int) (1024 * (0.02))
+				+ (int) (1024 * (0.02))
+				+ (int) (1024 * (0.20)), 40, 80, (int)(600 * 0.55));
 
 		JLabel label2 = new JLabel("Operandos");
 		label2.setFont(new Font("Calibri", Font.ITALIC, 15));
-		label2.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.04))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.26))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.06)), 40, 80, 30);
+		label2.setBounds((int) (1024 * (0.50))
+				+ (int) (1024 * (0.05))
+				+ (int) (1024 * (0.04))
+				+ (int) (1024 * (0.26))
+				+ (int) (1024 * (0.03)), 15, 80, 30);
 
 		l2Result = new JTextArea("Resultado 10");
 		l2Result.setFont(new Font("Calibri", Font.BOLD, 15));
-		l2Result.setBounds((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.50))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.05))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.04))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.26))
-				+ (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (0.06)), 60, 80, 1000);
+		l2Result.setBounds((int) (1024 * (0.50))
+				+ (int) (1024 * (0.05))
+				+ (int) (1024 * (0.04))
+				+ (int) (1024 * (0.26))
+				+ (int) (1024 * (0.03)), 40, 80, (int)(600 * 0.55));
+		
+		l2Result.setOpaque(false);
+		l1Result.setOpaque(false);
 
 		JScrollPane operandosScrollPane = new JScrollPane(l2Result, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
